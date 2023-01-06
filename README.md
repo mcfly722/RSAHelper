@@ -8,7 +8,7 @@ $p1 = [System.Numerics.BigInteger]::Parse("5477603193485151533926724478941715158
 $p2 = [System.Numerics.BigInteger]::Parse("5074615703421775174386027994334630811821327450578668312199")
 
 $rsa = New-Object System.Security.Cryptography.RSACryptoServiceProvider
-$RSAParameters = primesToRSAParameters $p1 $p2
+$RSAParameters = PrimesToRSAParameters $p1 $p2
 
 $rsa.ImportParameters($RSAParameters)
 ```

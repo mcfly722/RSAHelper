@@ -19,7 +19,7 @@ function PrimesToRSAParameters{
         $p2 = [System.Numerics.BigInteger]::Parse("5074615703421775174386027994334630811821327450578668312199")
 
         $rsa = New-Object System.Security.Cryptography.RSACryptoServiceProvider
-        $RSAParameters = primesToRSAParameters $p1 $p2
+        $RSAParameters = PrimesToRSAParameters $p1 $p2
 
         $rsa.ImportParameters($RSAParameters)
     #>
@@ -30,14 +30,14 @@ function PrimesToRSAParameters{
         [System.Numerics.BigInteger][Parameter(Mandatory = $false)]$exponent = [System.Numerics.BigInteger]::Parse("65537")
     )
 
-    function inverse_mod([System.Numerics.BigInteger] $a,[System.Numerics.BigInteger] $p){	
+    function inverse_mod([System.Numerics.BigInteger] $a,[System.Numerics.BigInteger] $p){
         # res = a^{-1} (mod p)
         $val = [System.Numerics.BigInteger]0
         $nt = [System.Numerics.BigInteger]1
         $r = $p
         $nr = $a
         while ($nr -ne [BigInt]0) {
-            $q = [BigInt]::Divide($r,$nr)		
+            $q = [BigInt]::Divide($r,$nr)
             $val_temp = $nt
             $nt = [BigInt]::Subtract($val,[BigInt]::Multiply($q,$nt))
             $val = $val_temp
